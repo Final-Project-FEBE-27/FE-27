@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate  } from "react-router-dom";
 
 const UploadForum = () => {
 
@@ -9,6 +10,7 @@ const UploadForum = () => {
     const [desc, setDesc] = useState("");
     const [kategori, setKategori] = useState("");
     const [uploadforum, setUploadForum] = useState({});
+    const navigation = useNavigate();
 
     // console.log(username, password);
 
@@ -23,7 +25,9 @@ const UploadForum = () => {
             kategori: kategori
           })
       .then((result) => {
-          console.log(result.data);
+            console.log(result.data);
+            alert("Anda berhasil membuat forum");
+            navigation(`/dashboard`);
       })
       .catch((error) => {
         console.log(error);

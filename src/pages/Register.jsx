@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Gambar from "../components/Gambar";
 import RegisterButton from "../components/RegisterButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import ReturnButton from "../components/ReturnButton";
 
 const Register = () => {
@@ -11,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [register, setRegister] = useState({});
+    const navigation = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,6 +25,8 @@ const Register = () => {
           })
         .then((result) => {
             console.log(result.data);
+            alert("Anda berhasil membuat akun baru");
+            navigation(`/login`);
         })
         .catch((error) => {
             console.log(error);

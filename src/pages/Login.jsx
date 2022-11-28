@@ -38,6 +38,10 @@ const Login = () => {
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
             }
+            else if (element.email !== email && element.password !== password) {
+              alert("Email atau Password anda salah");
+              navigation(`/login`);
+            }
           });
         })
         .catch((error) => {

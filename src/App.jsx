@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import UploadForum from './pages/UploadForum';
 import DetailForum from './pages/DetailForum';
 import CategoryPage from './pages/CategoryPage';
+import AdminPanel from './pages/AdminPanel';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
