@@ -534,3 +534,17 @@
     margin: 1rem 0 0 3rem;
     word-break: break-all;
 }
+
+.edit-content {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.table-user button {
+    padding: 0 0.5rem;
+    margin-right: 2px;
+}
+
+.table-forum button {
+    padding: 0 0.5rem;
+}

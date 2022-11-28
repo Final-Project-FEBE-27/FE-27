@@ -8,6 +8,7 @@ import UploadForum from './pages/UploadForum';
 import DetailForum from './pages/DetailForum';
 import CategoryPage from './pages/CategoryPage';
 import AdminPanel from './pages/AdminPanel';
+import UserDetail from './components/admin/UserDetail';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/editUser/:id" element={<UserDetail />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />

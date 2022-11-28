@@ -5,13 +5,16 @@ import Navbar from '../components/Navbar';
 import ContainerForum from '../components/ContainerForum';
 
 const Dashboard = () => {
+    
     return (
         <div className="dashboard">
             <Navbar /> 
             <div className="dashboard-content d-flex justify-content-between">
                 <BarKategori />  
-            <div className = "containerforum d-flex flex-column-reverse">
+            <div className = "containerforum d-flex flex-column">
+                <div className="d-flex flex-column-reverse">
                 <ContainerForum />
+                </div>
             </div>
                 <BuatForum />
             </div>

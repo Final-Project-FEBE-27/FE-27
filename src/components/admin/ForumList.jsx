@@ -25,11 +25,8 @@ const ForumList = () => {
     
     return (
         <div className="columns mt-5 is-centered">
-            <div className="column is-half">
-                <Link to={`addUser`} className="button is-success">
-                Add New Forum
-                </Link>
-                <table className="table is-striped is-fullwidth">
+            <div className="column is-half table-responsive">
+                <table className="table-forum table is-striped is-fullwidth">
                 <thead>
                     <tr>
                     <th>No</th>
@@ -47,16 +44,9 @@ const ForumList = () => {
                         <td>{forum.desc}</td>
                         <td>{forum.kategori}</td>
                         <td>
-                        <Link
-                            to={`editForum/${forum.id}`}
-                            className="button is-small is-info mr-2"
-                        >
-                            Edit
-                        </Link>
                         <button
                             onClick={() => deleteForum(forum.id)}
-                            className="button is-small is-danger"
-                        >
+                            className="button is-small is-danger">
                             Delete
                         </button>
                         </td>

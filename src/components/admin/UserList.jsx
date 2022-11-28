@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const UserList = () => {
+    const navigation = useNavigate();
     const [users, setUser] = useState([]);
 
     useEffect(() => {
@@ -22,14 +24,15 @@ const UserList = () => {
           console.log(error);
         }
     };
+
+    const editUser = (id) => {
+        navigation(`/editUser/${id}`);
+    }
     
     return (
         <div className="columns mt-5 is-centered">
-            <div className="column is-half">
-                <Link to={`addUser`} className="button is-success">
-                Add New User
-                </Link>
-                <table className="table is-striped is-fullwidth">
+            <div className="column is-half table-responsive">
+                <table className="table-user table is-striped is-fullwidth">
                 <thead>
                     <tr>
                     <th>No</th>
@@ -45,16 +48,14 @@ const UserList = () => {
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>
-                        <Link
-                            to={`editUser/${user.id}`}
-                            className="button is-small is-info mr-2"
-                        >
+                        <button
+                            onClick={()=> editUser(user.id)}
+                            className="button is-small is-info">
                             Edit
-                        </Link>
+                        </button>
                         <button
                             onClick={() => deleteUser(user.id)}
-                            className="button is-small is-danger"
-                        >
+                            className="button is-small is-danger">
                             Delete
                         </button>
                         </td>

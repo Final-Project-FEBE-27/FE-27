@@ -31,16 +31,17 @@ const Login = () => {
           if(email == "" && password == ""){
             alert("Masukkan Email dan Password anda");
           }
+          if(email === "admin@gmail.com" && password === "admin"){
+            alert("Berhasil masuk sebagai admin");
+            navigation(`/admin`);
+          }
           result.data.forEach((element) => {
-            if (element.email === email && element.password === password) {
-              console.log("succes");
+            if (element.email === email && element.password === password && email !== "admin@gmail.com") {
+              alert("Berhasil login!");
+              console.log("success");
               navigation(`/dashboard`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
-            }
-            else if (element.email !== email && element.password !== password) {
-              alert("Email atau Password anda salah");
-              navigation(`/login`);
             }
           });
         })

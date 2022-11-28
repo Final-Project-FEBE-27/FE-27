@@ -7,6 +7,7 @@ const AdminPanel = () => {
         <>
             <h2>User List</h2>
             <UserList />
+            <br />
             <h2>List Forum</h2>
             <ForumList />
         </>
