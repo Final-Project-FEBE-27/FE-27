@@ -14,7 +14,7 @@ const LoginAdmin = () => {
     const state = useSelector(state => state.listUser)
     const dispatch = useDispatch()
     const navigation = useNavigate();
-    console.log(state)
+    // console.log(state)
 
     useEffect(() => {
         dispatch(getUser())
@@ -36,7 +36,7 @@ const LoginAdmin = () => {
               alert("Berhasil login sebagai admin!");
               localStorage.setItem("user", "admin");
               const user=localStorage.getItem("user");
-              console.log(user);
+              // console.log(user);
               navigation(`/admin`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);

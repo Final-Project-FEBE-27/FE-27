@@ -14,7 +14,7 @@ function ContainerForum() {
         })
     }, [])
 
-    console.log(forum)
+    // console.log(forum)
 
     const handleDetail = (id) => {
         navigation(`/detail/${id}`);

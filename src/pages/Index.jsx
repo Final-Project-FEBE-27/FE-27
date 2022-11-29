@@ -7,6 +7,7 @@ const Index = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("account");
     localStorage.removeItem("pass");
+    localStorage.removeItem("name");
 
     return (
         <>

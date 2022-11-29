@@ -37,7 +37,7 @@ const Register = () => {
             setName("");
     };
 
-    console.log(register);
+    // console.log(register);
 
     return (
         <>

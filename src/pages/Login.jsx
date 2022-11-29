@@ -11,11 +11,11 @@ const Login = () => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState();
+    const [name, setName] = useState("");
     const state = useSelector(state => state.listUser)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigation = useNavigate();
-    console.log(state)
+    // console.log(state)
 
     useEffect(() => {
         dispatch(getUser())
@@ -38,13 +38,19 @@ const Login = () => {
               alert("Berhasil login!");
               localStorage.setItem("user", "user");
               const user=localStorage.getItem("user");
-              console.log(user);
+              // console.log(user);
               navigation(`/dashboard`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
-              setName(element.name)
-              localStorage.setItem("name", name);
-              console.log(name);
+              const userData = result.data.filter(el => {
+                return el.email === email;
+              });
+              const getname = userData.map((el) => {
+                return el.name
+              })
+              localStorage.setItem("name", getname);
+              const nama = localStorage.getItem("name");
+              // console.log(nama);
             }
           });
         })
