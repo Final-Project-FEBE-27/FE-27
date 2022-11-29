@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const UserDetail = () => {
     const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ const UserDetail = () => {
     return (
         <>
             <div className="container edit-content">
-                <h3>Edit User</h3>
+                <h3 className="edit-title mt-6 mb-6">Edit User</h3>
                 <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
                     <label htmlFor="email">Email</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={email}/>
@@ -60,6 +61,7 @@ const UserDetail = () => {
                     <label htmlFor="name">Your Name</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={name}/>
                     <button type="submit" className="btn-darker">Update</button>
+                    <Link to={"/admin"} className="button is-danger">Cancel</Link> 
                 </form>
             </div>
         </>
