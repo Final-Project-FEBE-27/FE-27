@@ -27,6 +27,7 @@ function ContainerForum() {
             <div key={index} className="forum">
             <div className="forum-info">
                 <a onClick={()=> handleDetail(item.id)}>
+                    <p>{item.account}</p>
                     <h3>{item.title}</h3>
                 </a>
             </div>

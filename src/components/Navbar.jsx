@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../img/logo.png";
-import profile from "../img/profile.png"
+import profile from "../img/profile.png";
 
 const Navbar = () => {
+    const email = localStorage.getItem("account");
+    const name = localStorage.getItem("name");
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +27,7 @@ const Navbar = () => {
                         <img src={profile} alt="profile" width="30" height="24" className="profileImg d-flex" />
                         <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            My Profile
+                            {name}
                         </a>
                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li className="dropdown-item">

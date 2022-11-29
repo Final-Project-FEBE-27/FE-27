@@ -11,6 +11,7 @@ const Login = () => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState();
     const state = useSelector(state => state.listUser)
     const dispatch = useDispatch()
     const navigation = useNavigate();
@@ -26,6 +27,7 @@ const Login = () => {
       axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
         email: email,
         password: password,
+        name: name
       })
         .then((result) => {
           if(email == "" && password == ""){
@@ -40,6 +42,9 @@ const Login = () => {
               navigation(`/dashboard`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
+              setName(element.name)
+              localStorage.setItem("name", name);
+              console.log(name);
             }
           });
         })

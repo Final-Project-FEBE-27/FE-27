@@ -35,6 +35,7 @@ const DetailForum = () => {
                         <div className="containerdetail d-flex flex-column">
                             <div className="forum">
                                 <div className="forum-info">
+                                    <p>{el.account}</p>
                                     <h3>{el.title}</h3>
                                 </div>
                                 <div className="overview">

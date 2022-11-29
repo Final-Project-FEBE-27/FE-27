@@ -11,18 +11,20 @@ const UploadForum = () => {
     const [kategori, setKategori] = useState("");
     const [uploadforum, setUploadForum] = useState({});
     const navigation = useNavigate();
+    const account = localStorage.getItem("account");
 
     // console.log(username, password);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // alert('Username: ${username}, Password: ${password}');
-        setUploadForum({title, desc, kategori});
+        setUploadForum({title, desc, kategori, account});
 
         axios.post("https://6379ea2d7419b414df95e16c.mockapi.io/forum", {
             title: title,
             desc: desc,
-            kategori: kategori
+            kategori: kategori,
+            account: account
           })
       .then((result) => {
             console.log(result.data);
