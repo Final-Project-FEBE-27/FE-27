@@ -31,7 +31,7 @@ const Navbar = () => {
                                 <Link className="nav-link" to="">My Profile</Link>
                             </li>
                             <li className="dropdown-item">
-                                <Link className="nav-link" to="/login">Logout</Link>
+                                <Link className="nav-link" to="/">Logout</Link>
                             </li>
                         </ul>
                         </li>

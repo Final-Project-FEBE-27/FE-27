@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -9,6 +9,8 @@ import DetailForum from './pages/DetailForum';
 import CategoryPage from './pages/CategoryPage';
 import AdminPanel from './pages/AdminPanel';
 import UserDetail from './components/admin/UserDetail';
+import PrivateRoute from './components/PrivateRoute';
+import PrivateRouteAdmin from './components/PrivateRouteAdmin';
 
 function App() {
 
@@ -16,14 +18,18 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/editUser/:id" element={<UserDetail />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/detail/:id" element={<DetailForum />} />
-        <Route path="/upload" element={<UploadForum />} />
-        <Route path="/category/:kategori" element={<CategoryPage />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/detail/:id" element={<DetailForum />} />
+          <Route path="/upload" element={<UploadForum />} />
+          <Route path="/category/:kategori" element={<CategoryPage />} />
+        </Route>
+        <Route path="/" element={<PrivateRouteAdmin />}>
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/editUser/:id" element={<UserDetail />} />
+        </Route>
       </Routes>
     </div>
   )

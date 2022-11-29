@@ -3,6 +3,9 @@ import GambarIndex from "../components/Gambarindex";
 import LoginButton1 from "../components/LoginButton1";
 
 const Index = () => {
+
+    localStorage.removeItem("user");
+
     return (
         <>
         <div className="index-content d-flex align-items-center bg-image">

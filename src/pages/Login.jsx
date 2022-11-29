@@ -22,7 +22,7 @@ const Login = () => {
     
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log({ email, password });
+      // console.log({ email, password });
       axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
         email: email,
         password: password,
@@ -31,17 +31,18 @@ const Login = () => {
           if(email == "" && password == ""){
             alert("Masukkan Email dan Password anda");
           }
-          if(email === "admin@gmail.com" && password === "admin"){
-            alert("Berhasil masuk sebagai admin");
-            navigation(`/admin`);
-          }
           result.data.forEach((element) => {
             if (element.email === email && element.password === password && email !== "admin@gmail.com") {
               alert("Berhasil login!");
-              console.log("success");
+              localStorage.setItem("user", "user");
+              const user=localStorage.getItem("user");
+              console.log(user);
               navigation(`/dashboard`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
+            } else if (email === "admin@gmail.com" && password === "admin") {
+                localStorage.setItem("user", "admin");
+                navigation(`/admin`);
             }
           });
         })
