@@ -16,7 +16,7 @@ const PrivateRouteAdmin=() => {
 
     const auth=isAuth()
 
-  return auth?<Outlet/>: <Navigate to="/login"/>
+  return auth?<Outlet/>: <Navigate to="/loginadmin"/>
 }
 
 export default PrivateRouteAdmin;

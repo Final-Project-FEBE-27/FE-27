@@ -7,7 +7,7 @@ import Gambar from "../components/Gambar";
 import ReturnButton from "../components/ReturnButton";
 import axios from "axios";
 
-const Login = () => {
+const LoginAdmin = () => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ const Login = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       // console.log({ email, password });
-      axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
+      axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/admin", {
         email: email,
         password: password,
       })
@@ -33,11 +33,11 @@ const Login = () => {
           }
           result.data.forEach((element) => {
             if (element.email === email && element.password === password) {
-              alert("Berhasil login!");
-              localStorage.setItem("user", "user");
+              alert("Berhasil login sebagai admin!");
+              localStorage.setItem("user", "admin");
               const user=localStorage.getItem("user");
               console.log(user);
-              navigation(`/dashboard`);
+              navigation(`/admin`);
               localStorage.setItem("account", email);
               localStorage.setItem("pass", password);
             }
@@ -55,26 +55,20 @@ const Login = () => {
                 <h1><strong>Login</strong></h1>
                 <Gambar />
                 <div className="return-btn align-self-start">
-                    <ReturnButton />
+                <Link to={"/login"}><button type="button" className="btn-darker btn btn-primary">Cancel</button></Link>
                 </div>
             </div>
             <div className="content-text d-flex flex-column align-items-center">
-                <h1>Login</h1>
+                <h1>Login as admin</h1>
                 <div className="form-login">
                     <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
                         <label htmlFor="email">Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label htmlFor="password">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                        <Link to={"/dashboard"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
-                        <div className="text-center login-text">
-                        <p>Don't have an account? <Link to={"/register"}>Create account</Link></p>
-                        <p><strong>OR</strong></p>
-                        <p>Are you an admin? <Link to={"/loginadmin"}>Login as admin</Link></p>
-                        </div>
                         <div className="align-self-center">
                         {/* <LoginButton2 /> */}
-                        
+                        <Link to={"/dashboard"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
                         </div>
                     </form>
                 </div>
@@ -84,4 +78,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginAdmin;

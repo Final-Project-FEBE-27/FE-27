@@ -5,6 +5,8 @@ import LoginButton1 from "../components/LoginButton1";
 const Index = () => {
 
     localStorage.removeItem("user");
+    localStorage.removeItem("account");
+    localStorage.removeItem("pass");
 
     return (
         <>

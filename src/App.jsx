@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
 import Index from './pages/Index';
 import Login from './pages/Login';
+import LoginAdmin from './pages/LoginAdmin';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import UploadForum from './pages/UploadForum';
@@ -18,7 +19,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/login/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/loginadmin" element={<LoginAdmin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
