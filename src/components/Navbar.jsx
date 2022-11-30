@@ -33,7 +33,7 @@ const Navbar = () => {
                                 <Link className="nav-link" to="/profile">My Profile</Link>
                             </li>
                             <li className="dropdown-item">
-                                <Link className="nav-link" to="/">Logout</Link>
+                                <Link className="nav-link" to="/logout">Logout</Link>
                             </li>
                         </ul>
                         </li>
