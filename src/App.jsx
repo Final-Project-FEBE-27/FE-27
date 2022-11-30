@@ -25,10 +25,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/detail/:id" element={<DetailForum />} />
+          <Route path="/yourforum/:id" element={<DetailForum />} />
           <Route path="/upload" element={<UploadForum />} />
-          <Route path="/category/:kategori" element={<CategoryPage />} />
-          <Route path="/profile" element={<MyProfile />} />
+          <Route path="/kategori/:kategori" element={<CategoryPage />} />
         </Route>
         <Route path="/" element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<AdminPanel />} />

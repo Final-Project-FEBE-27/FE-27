@@ -18,7 +18,7 @@ const BarKategori = () => {
     // console.log(forum)
 
     const handleCategory = (kategori) => {
-        navigation(`/category/${kategori}`);
+        navigation(`/kategori/${kategori}`);
     }
 
     
