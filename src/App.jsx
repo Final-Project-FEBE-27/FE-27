@@ -12,6 +12,7 @@ import AdminPanel from './pages/AdminPanel';
 import UserDetail from './components/admin/UserDetail';
 import PrivateRoute from './components/PrivateRoute';
 import PrivateRouteAdmin from './components/PrivateRouteAdmin';
+import Logout from './pages/Logout';
 
 function App() {
 
@@ -26,11 +27,13 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/detail/:id" element={<DetailForum />} />
           <Route path="/upload" element={<UploadForum />} />
-          <Route path="/category/:kategori" element={<CategoryPage />} />
+          <Route path="/upload" element={<UploadForum />} />
+          <Route path="/logout" element={<Logout />} />
         </Route>
         <Route path="/" element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/editUser/:id" element={<UserDetail />} />
+          <Route path="/logout" element={<Logout />} />
         </Route>
       </Routes>
     </div>

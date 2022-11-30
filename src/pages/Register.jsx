@@ -13,29 +13,58 @@ const Register = () => {
     const [register, setRegister] = useState({});
     const navigation = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // alert('Username: ${username}, Password: ${password}');
-        setRegister({ email, password, name});
+    const handleSubmit = () => {
+        var data = JSON.stringify({
+            "email": email,
+            "username": name,
+            "password": password
+          });
+          
+          var config = {
+            method: 'post',
+            url: 'http://localhost:3000/register',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            data : data
+          };
+          
+          axios(config)
+          .then(function (response) {
+            console.log('ini respon sukses: ', response);
+            alert("Register sukses")
+            navigation('/login')
 
-        axios.post("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
-            email: email,
-            password: password,
-            name: name
           })
-        .then((result) => {
-            console.log(result.data);
-            alert("Anda berhasil membuat akun baru");
-            navigation(`/login`);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("error");
-        })
-            setEmail("");
-            setPassword("");
-            setName("");
-    };
+          .catch(function (error) {
+            console.log('ini respon error: ', error);
+            alert(error.response.data.message)
+          });
+    }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     // alert('Username: ${username}, Password: ${password}');
+    //     setRegister({ email, password, name});
+
+    //     axios.post("http://localhost:3000/register", {
+    //         email: email,
+    //         password: password,
+    //         name: name
+    //       })
+    //     .then((result) => {
+    //         console.log(result.data);
+    //         alert("Anda berhasil membuat akun baru");
+    //         navigation(`/login`);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //         alert("error");
+    //     })
+    //         setEmail("");
+    //         setPassword("");
+    //         setName("");
+    // };
 
     // console.log(register);
 
@@ -52,15 +81,16 @@ const Register = () => {
         <div className="content-text d-flex flex-column align-items-center">
             <h1>Register</h1>
             <div className="form-register">
-                    <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
+                    <div className="d-flex flex-column">
                         <label htmlFor="email">Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label htmlFor="password">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <label htmlFor="name">Your Name</label>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
-                        <RegisterButton />
-                    </form>
+                        {/* <RegisterButton onClick={handleSubmit} /> */}
+                        <button onClick={handleSubmit} className="btn-lighter btn btn-primary">Register</button>
+                    </div>
                 </div>
             </div>
         </div>

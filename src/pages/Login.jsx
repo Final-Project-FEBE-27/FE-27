@@ -17,47 +17,75 @@ const Login = () => {
     const navigation = useNavigate();
     // console.log(state)
 
-    useEffect(() => {
-        dispatch(getUser())
-    }, [])
-    
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // console.log({ email, password });
-      axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
-        email: email,
-        password: password,
-        name: name
+    const handleSubmit = () => {
+      var data = JSON.stringify({
+        "email": email,
+        "password": password
+      });
+      
+      var config = {
+        method: 'post',
+        url: 'http://localhost:3000/login',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        console.log('ini response sukses ', response);
+        localStorage.setItem('token', response.data.token)
+        alert("Login sukses")
+        navigation('/dashboard')
       })
-        .then((result) => {
-          if(email == "" && password == ""){
-            alert("Masukkan Email dan Password anda");
-          }
-          result.data.forEach((element) => {
-            if (element.email === email && element.password === password) {
-              alert("Berhasil login!");
-              localStorage.setItem("user", "user");
-              const user=localStorage.getItem("user");
-              // console.log(user);
-              navigation(`/dashboard`);
-              localStorage.setItem("account", email);
-              localStorage.setItem("pass", password);
-              const userData = result.data.filter(el => {
-                return el.email === email;
-              });
-              const getname = userData.map((el) => {
-                return el.name
-              })
-              localStorage.setItem("name", getname);
-              const nama = localStorage.getItem("name");
-              // console.log(nama);
-            }
-          });
-        })
-        .catch((error) => {
-          alert(error, "Error");
-        });
-    };  
+      .catch(function (error) {
+        console.log('ini response error ', error);
+        alert(error.response.data.message)
+      });
+    }
+
+    // useEffect(() => {
+    //     dispatch(getUser())
+    // }, [])
+    
+    // const handleSubmit = (e) => {
+    //   e.preventDefault();
+    //   // console.log({ email, password });
+    //   axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user", {
+    //     email: email,
+    //     password: password,
+    //     name: name
+    //   })
+    //     .then((result) => {
+    //       if(email == "" && password == ""){
+    //         alert("Masukkan Email dan Password anda");
+    //       }
+    //       result.data.forEach((element) => {
+    //         if (element.email === email && element.password === password) {
+    //           alert("Berhasil login!");
+    //           localStorage.setItem("user", "user");
+    //           const user=localStorage.getItem("user");
+    //           // console.log(user);
+    //           navigation(`/dashboard`);
+    //           localStorage.setItem("account", email);
+    //           localStorage.setItem("pass", password);
+    //           const userData = result.data.filter(el => {
+    //             return el.email === email;
+    //           });
+    //           const getname = userData.map((el) => {
+    //             return el.name
+    //           })
+    //           localStorage.setItem("name", getname);
+    //           const nama = localStorage.getItem("name");
+    //           // console.log(nama);
+    //         }
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       alert(error, "Error");
+    //     });
+    // };  
 
     return (
         <>
@@ -72,12 +100,14 @@ const Login = () => {
             <div className="content-text d-flex flex-column align-items-center">
                 <h1>Login</h1>
                 <div className="form-login">
-                    <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
+                    <div className="d-flex flex-column">
                         <label htmlFor="email">Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label htmlFor="password">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                        <Link to={"/dashboard"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
+                        {/* <Link to={"/dashboard"}> */}
+                          <button onClick={handleSubmit} className="btn-lighter btn btn-primary">Login</button>
+                          {/* </Link> */}
                         <div className="text-center login-text">
                         <p>Don't have an account? <Link to={"/register"}>Create account</Link></p>
                         <p><strong>OR</strong></p>
@@ -87,7 +117,7 @@ const Login = () => {
                         {/* <LoginButton2 /> */}
                         
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
