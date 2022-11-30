@@ -22,7 +22,7 @@ const Register = () => {
           
           var config = {
             method: 'post',
-            url: 'http://localhost:3000/register',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/register',
             headers: { 
               'Content-Type': 'application/json'
             },

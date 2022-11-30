@@ -25,7 +25,7 @@ const Login = () => {
       
       var config = {
         method: 'post',
-        url: 'http://localhost:3000/login',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/login',
         headers: { 
           'Content-Type': 'application/json'
         },
