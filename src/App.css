@@ -379,6 +379,12 @@
     .selectform {
         font-size: 0.75rem;
     }
+    body .profile p {
+        font-size: 1rem;
+    }
+    body .profile ul li {
+        font-size: 0.75rem;
+    }
 }
 
 @media only screen and (max-width:540px) {
@@ -573,4 +579,18 @@
 
 .login-text {
     margin-top: 0.5rem;
+}
+
+.profile p,
+.profile .card-header {
+    font-size: 1.5rem;
+}
+
+.profile .card-header {
+    background-color: #E9CCB1;
+}
+
+.profile .card-header p {
+    color: #072D4B;
+    font-weight: bold;
 }
