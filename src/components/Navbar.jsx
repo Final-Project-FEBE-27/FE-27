@@ -4,7 +4,7 @@ import logo from "../img/logo.png";
 import profile from "../img/profile.png";
 
 const Navbar = () => {
-    const name = localStorage.getItem("name");
+    const name = localStorage.getItem("username");
 
     return (
         <>
