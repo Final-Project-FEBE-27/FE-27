@@ -23,7 +23,7 @@ const CategoryPage = () => {
     }, [])
 
     const handleDetail = (id) => {
-        navigation(`/detail/${id}`);
+        navigation(`/yourforum/${id}`);
     }
     //console.log(forum)
 
