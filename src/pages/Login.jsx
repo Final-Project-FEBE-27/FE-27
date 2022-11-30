@@ -37,6 +37,7 @@ const Login = () => {
         console.log('ini response sukses ', response);
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('username', response.data.data)
+        localStorage.setItem('email', email)
         alert("Login sukses")
         navigation('/dashboard')
       })

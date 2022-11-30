@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MyProfile = () => {
-    const name = localStorage.getItem("name")
-    const email = localStorage.getItem("account")
+    const name = localStorage.getItem("username")
+    const email = localStorage.getItem("email")
 
     return (
         <>
