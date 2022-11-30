@@ -30,7 +30,7 @@ const Navbar = () => {
                         </a>
                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li className="dropdown-item">
-                                <Link className="nav-link" to="">My Profile</Link>
+                                <Link className="nav-link" to="/profile">My Profile</Link>
                             </li>
                             <li className="dropdown-item">
                                 <Link className="nav-link" to="/">Logout</Link>
