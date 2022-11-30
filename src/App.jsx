@@ -28,6 +28,7 @@ function App() {
           <Route path="/yourforum/:id" element={<DetailForum />} />
           <Route path="/upload" element={<UploadForum />} />
           <Route path="/kategori/:kategori" element={<CategoryPage />} />
+          <Route path="/profile" element={<MyProfile />} />
         </Route>
         <Route path="/" element={<PrivateRouteAdmin />}>
           <Route path="/admin" element={<AdminPanel />} />
