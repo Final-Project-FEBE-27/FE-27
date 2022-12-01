@@ -4,23 +4,58 @@ import axios from "axios";
 
 const ForumList = () => {
     const [forums, setForum] = useState([]);
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        getForums();
-    }, []);
-    
-    const getForums = async () => {
-        const response = await axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/forum");
-        setForum(response.data);
-    };
-    
-    const deleteForum = async (id) => {
-        try {
-          await axios.delete(`https://6379ea2d7419b414df95e16c.mockapi.io/forum/${id}`);
-          getForums();
-        } catch (error) {
-          console.log(error);
-        }
+        var data = '';
+      
+      var config = {
+        method: 'get',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin',
+        headers: { 
+          'Content-Type': 'application/json',
+          'auth_token' : token
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        setForum(response.data.data);
+        //console.log(response.data);
+        setisLoading(false);
+        console.log(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisError(true);
+      });
+    }, [])
+
+    const deleteForum = (id) => {
+        console.log(id)
+        var config = {
+            method: 'delete',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin',
+            headers: { 
+              'Content-Type': 'application/json',
+              'auth_token' : token
+            },
+            body: {
+                '_id': id
+            }
+          };
+          
+          axios(config)
+          .then(function (response) {
+            console.log("Data berhasil dihapus")
+          })
+          .catch(function (error) {
+            console.log(error);
+            setisError(true);
+          });
     };
     
     return (
@@ -38,14 +73,14 @@ const ForumList = () => {
                 </thead>
                 <tbody>
                     {forums.map((forum, index) => (
-                    <tr key={forum.id}>
+                    <tr key={forum._id}>
                         <td>{index + 1}</td>
-                        <td>{forum.title}</td>
-                        <td>{forum.desc}</td>
+                        <td>{forum.judul}</td>
+                        <td>{forum.isi}</td>
                         <td>{forum.kategori}</td>
                         <td>
                         <button
-                            onClick={() => deleteForum(forum.id)}
+                            onClick={() => deleteForum(forum._id)}
                             className="button is-small is-danger">
                             Delete
                         </button>

@@ -11,42 +11,50 @@ const UserDetail = () => {
     const [name, setName] = useState("");
     const navigation = useNavigate();
     const { id } = useParams();
-    //console.log(id)
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-            getUserById();
+        getUserById();
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         e.preventDefault();
-        // alert('Username: ${username}, Password: ${password}');
+        var data = JSON.stringify({
+            "email": email,
+            "password": password,
+            "username": name
+        });
+      
+      var config = {
+        method: 'put',
+        url: `https://blue-cloudy-rattlesnake.cyclic.app/admin/editUser/:id`,
+        headers: { 
+          'Content-Type': 'application/json',
+          'auth_token' : token
+        },
+        data: data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        alert("Data berhasil diubah");
+        navigation(`/admin`);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisError(true);
+      });
 
-        axios.put(`https://6379ea2d7419b414df95e16c.mockapi.io/user/${id}`, {
-            email: email,
-            password: password,
-            name: name
-          })
-        .then((result) => {
-            console.log(result.data);
-            alert("Data berhasil diubah");
-            navigation(`/admin`);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("error");
-        })
-            setEmail("");
-            setPassword("");
-            setName("");
     };
 
     const getUserById = async () => {
-        const response = await axios.get(`https://6379ea2d7419b414df95e16c.mockapi.io/user/${id}`);
-        setName(response.data.name);
+        const response = await axios.get(`https://blue-cloudy-rattlesnake.cyclic.app/admin/editUser/:id`);
+        setName(response.data.username);
         setEmail(response.data.email);
         setPassword(response.data.password);
       };
-
 
 
     return (

@@ -6,23 +6,55 @@ import { useNavigate } from "react-router-dom"
 const UserList = () => {
     const navigation = useNavigate();
     const [users, setUser] = useState([]);
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        getUsers();
-    }, []);
+        var data = '';
+      
+      var config = {
+        method: 'get',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin/user',
+        headers: { 
+          'Content-Type': 'application/json',
+          'auth_token' : token
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        setUser(response.data.data);
+        //console.log(response.data);
+        setisLoading(false);
+        console.log(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+        setisError(true);
+      });
+    }, [])
     
-    const getUsers = async () => {
-        const response = await axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/user");
-        setUser(response.data);
-    };
-    
-    const deleteUser = async (id) => {
-        try {
-          await axios.delete(`https://6379ea2d7419b414df95e16c.mockapi.io/user/${id}`);
-          getUsers();
-        } catch (error) {
-          console.log(error);
-        }
+    const deleteUser = (id) => {
+        var config = {
+            method: 'delete',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin/user',
+            headers: { 
+              'Content-Type': 'application/json',
+              'auth_token' : token
+            },
+            body: id
+          };
+          
+          axios(config)
+          .then(function (response) {
+            console.log("Data berhasil dihapus")
+          })
+          .catch(function (error) {
+            console.log(error);
+            setisError(true);
+          });
     };
 
     const editUser = (id) => {
@@ -43,18 +75,18 @@ const UserList = () => {
                 </thead>
                 <tbody>
                     {users.map((user, index) => (
-                    <tr key={user.id}>
+                    <tr key={index}>
                         <td>{index + 1}</td>
-                        <td>{user.name}</td>
+                        <td>{user.username}</td>
                         <td>{user.email}</td>
                         <td>
                         <button
-                            onClick={()=> editUser(user.id)}
+                            onClick={()=> editUser(user._id)}
                             className="button is-small is-info">
                             Edit
                         </button>
                         <button
-                            onClick={() => deleteUser(user.id)}
+                            onClick={() => deleteUser(user._id)}
                             className="button is-small is-danger">
                             Delete
                         </button>
