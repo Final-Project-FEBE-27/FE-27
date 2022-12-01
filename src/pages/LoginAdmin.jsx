@@ -69,7 +69,7 @@ const LoginAdmin = () => {
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <div className="align-self-center">
                         {/* <LoginButton2 /> */}
-                        <Link to={"/dashboard"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
+                        <Link to={"/admin"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
                         </div>
                     </form>
                 </div>

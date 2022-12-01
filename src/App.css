@@ -333,6 +333,11 @@
         font-size: 0.75rem;
         padding: 0.25rem 1.5rem;
     }
+    .edit-content .btn-darker {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        padding: 0.5rem 2rem;
+    }
     .btn-lighter {
         margin: 1rem 0 1rem 0;
         font-size: 0.75rem;
