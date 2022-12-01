@@ -11,23 +11,47 @@ const DetailForum = () => {
 
     const [forum, setForum] = useState([])
     const { id } = useParams();
-    //console.log(id)
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
+    const token = localStorage.getItem("token");
+    
+    // console.log(id)
 
     useEffect(() => {
-        axios("https://6379ea2d7419b414df95e16c.mockapi.io/forum").then (result => {
-            // console.log(result.data)
-            setForum(result.data)
+        var data = '';
+      
+        var config = {
+            method: 'get',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/yourforum/'+id,
+            headers: { 
+            'Content-Type': 'application/json',
+            'auth_token' : token
+            },
+            data: data,
+        };
+      
+        axios(config)
+        .then(function (response) {
+            setForum([response.data.data]);
+            // console.log(response.data)
+            setisLoading(false);
         })
+        .catch(function (error) {
+            console.log(error);
+            setisError(true);
+        });
     }, [])
 
-    //console.log(forum)
+    console.log(forum);
 
-
+    if (isLoading) return <h1>Loading data</h1>;
+    else if (!isError)
 
     return (
-        <>{forum.filter((el) => el.id === id).map((el) => {
+        <>
+        {forum.map((el, index) => {
             return (
-                <div key={el.id}>
+                <div key={index}>
                 <div className="detail">
                     <Navbar /> 
                     <div className="detail-content d-flex justify-content-between">
@@ -35,11 +59,11 @@ const DetailForum = () => {
                         <div className="containerdetail d-flex flex-column">
                             <div className="forum">
                                 <div className="forum-info">
-                                    <p>{el.account}</p>
-                                    <h3>{el.title}</h3>
+                                    <p>{el.user.username}</p>
+                                    <h3>{el.judul}</h3>
                                 </div>
                                 <div className="overview">
-                                    {el.desc}
+                                    {el.isi}
                                 </div>
                             </div>
                             <Comment />
