@@ -11,33 +11,46 @@ const UploadForum = () => {
     const [kategori, setKategori] = useState("");
     const [uploadforum, setUploadForum] = useState({});
     const navigation = useNavigate();
-    const name = localStorage.getItem("name");
+    const name = localStorage.getItem("username");
 
     // console.log(username, password);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // alert('Username: ${username}, Password: ${password}');
+    const handleSubmit = () => {
         setUploadForum({title, desc, kategori, name});
+        console.log(uploadforum)
 
-        axios.post("https://6379ea2d7419b414df95e16c.mockapi.io/forum", {
-            title: title,
-            desc: desc,
-            kategori: kategori,
-            account: name
-          })
-      .then((result) => {
-            console.log(result.data);
+        const token = localStorage.getItem("token");
+      
+        var data = JSON.stringify({
+            "judul": title,
+            "isi": desc,
+            "kategori": kategori,
+            "user": {
+                "username": name
+            }
+          });
+          
+          var config = {
+            method: 'post',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/upload',
+            headers: { 
+              'Content-Type': 'application/json',
+              'auth_token' : token
+            },
+            data : data
+          };
+          
+          axios(config)
+          .then(function (response) {
+            console.log('ini respon sukses: ', response);
             alert("Anda berhasil membuat forum");
             navigation(`/dashboard`);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("error");
-      })
-        setTitle("");
-        setDesc("");
-        setKategori("");
+
+          })
+          .catch(function (error) {
+            console.log('ini respon error: ', error);
+            alert(error.response.data.message)
+          });
     };
 
     // console.log(uploadforum);
@@ -48,7 +61,6 @@ const UploadForum = () => {
         <div className="container-upload">
         <h1>Upload Forum</h1>
         <br />
-            <form action="" onSubmit={handleSubmit}>
                 <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)}/>
@@ -66,8 +78,7 @@ const UploadForum = () => {
                     <option value="others">Others</option>
                 </select>
                 </div>
-                <button type="submit" className="btn-darker btn btn-primary mt-4">Upload</button>
-            </form>
+                <button onClick={handleSubmit} className="btn-darker btn btn-primary mt-4">Upload</button>
         </div>
         </div>
     );

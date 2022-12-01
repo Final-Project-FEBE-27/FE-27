@@ -20,32 +20,33 @@ const LoginAdmin = () => {
         dispatch(getUser())
     }, [])
     
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // console.log({ email, password });
-      axios.get("https://6379ea2d7419b414df95e16c.mockapi.io/admin", {
-        email: email,
-        password: password,
+    const handleSubmit = () => {
+      var data = JSON.stringify({
+        "username": email,
+        "password": password
+      });
+      
+      var config = {
+        method: 'post',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/loginadmin',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        console.log('ini response sukses ', response);
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem("user", "admin");
+        alert("Berhasil login sebagai admin!")
+        navigation('/admin')
       })
-        .then((result) => {
-          if(email == "" && password == ""){
-            alert("Masukkan Email dan Password anda");
-          }
-          result.data.forEach((element) => {
-            if (element.email === email && element.password === password) {
-              alert("Berhasil login sebagai admin!");
-              localStorage.setItem("user", "admin");
-              const user=localStorage.getItem("user");
-              // console.log(user);
-              navigation(`/admin`);
-              localStorage.setItem("account", email);
-              localStorage.setItem("pass", password);
-            }
-          });
-        })
-        .catch((error) => {
-          alert(error, "Error");
-        });
+      .catch(function (error) {
+        console.log('ini response error ', error);
+        alert(error.response.data.message)
+      });
     };  
 
     return (

@@ -6,13 +6,33 @@ import axios from 'axios';
 function ContainerForum() {
     const navigation = useNavigate();
     const [forum, setForum] = useState([])
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        axios("https://6379ea2d7419b414df95e16c.mockapi.io/forum").then (result => {
-            // console.log(result.data)
-            setForum(result.data)
-        })
+        var data = '';
+      
+      var config = {
+        method: 'get',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/dashboard',
+        headers: { 
+          'Content-Type': 'application/json',
+          'auth_token' : token
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        setForum(response.data);
+        console.log(forum);
+        console.log(response.data);
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }, [])
+    
 
     // console.log(forum)
 
@@ -26,13 +46,13 @@ function ContainerForum() {
         {forum.map((item, index) => (
             <div key={index} className="forum">
             <div className="forum-info">
-                <a onClick={()=> handleDetail(item.id)}>
-                    <p>{item.account}</p>
-                    <h3>{item.title}</h3>
+                <a onClick={()=> handleDetail(item._id)}>
+                    <p>{item.user}</p>
+                    <h3>{item.judul}</h3>
                 </a>
             </div>
             <div className="overview">
-                {item.desc}
+                {item.isi}
             </div>
         </div>
         ))}

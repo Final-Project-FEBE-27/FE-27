@@ -4,11 +4,6 @@ import LoginButton1 from "../components/LoginButton1";
 
 const Index = () => {
 
-    localStorage.removeItem("user");
-    localStorage.removeItem("account");
-    localStorage.removeItem("pass");
-    localStorage.removeItem("name");
-
     return (
         <>
         <div className="index-content d-flex align-items-center bg-image">

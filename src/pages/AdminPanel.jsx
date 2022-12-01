@@ -7,7 +7,7 @@ const AdminPanel = () => {
     return (
         <>
             <div className="adminPanel container mt-6">
-                <Link className="admin-logout" to="/">Logout</Link>
+                <Link className="admin-logout" to="/logout">Logout</Link>
                 <h2 className="admin-title">User List</h2>
                 <UserList />
                 <br />
