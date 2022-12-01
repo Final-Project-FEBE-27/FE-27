@@ -62,7 +62,7 @@ const LoginAdmin = () => {
             <div className="content-text d-flex flex-column align-items-center">
                 <h1>Login as admin</h1>
                 <div className="form-login">
-                    <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
+                    <div className="d-flex flex-column">
                         <label htmlFor="email">Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label htmlFor="password">Password</label>
@@ -71,7 +71,7 @@ const LoginAdmin = () => {
                         {/* <LoginButton2 /> */}
                         <Link to={"/admin"}><button type="submit" className="btn-lighter btn btn-primary" onClick={handleSubmit}>Login</button></Link>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

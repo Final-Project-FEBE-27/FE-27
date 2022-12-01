@@ -20,8 +20,7 @@ const UserDetail = () => {
         getUserById();
     }, [])
 
-    const handleSubmit = () => {
-        e.preventDefault();
+    const handleSubmit = (id) => {
         var data = JSON.stringify({
             "email": email,
             "password": password,
@@ -30,7 +29,7 @@ const UserDetail = () => {
       
       var config = {
         method: 'put',
-        url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin/user',
+        url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin/editUser/:id',
         headers: { 
           'Content-Type': 'application/json',
           'auth_token' : token
@@ -85,16 +84,16 @@ const UserDetail = () => {
             <div key={index}>
             <div className="container edit-content">
                 <h3 className="edit-title mt-6 mb-6">Edit User</h3>
-                <form action="" onSubmit={handleSubmit} className="d-flex flex-column">
+                <div className="d-flex flex-column">
                     <label htmlFor="email">Email</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={el.email}/>
                     <label htmlFor="password">Password</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={el.password}/>
                     <label htmlFor="name">Your Name</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={el.username}/>
-                    <button type="submit" className="btn-darker">Update</button>
+                    <button type="submit" onClick={handleSubmit} className="btn-darker">Update</button>
                     <Link to={"/admin"} className="button is-danger">Cancel</Link> 
-                </form>
+                </div>
             </div>
             </div>
             )

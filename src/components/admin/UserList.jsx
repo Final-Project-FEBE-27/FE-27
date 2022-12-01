@@ -35,8 +35,14 @@ const UserList = () => {
         setisError(true);
       });
     }, [])
-    
+
     const deleteUser = (id) => {
+        console.log(id)
+
+        var data = JSON.stringify({
+            "id": id
+        })
+
         var config = {
             method: 'delete',
             url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin/user',
@@ -44,12 +50,13 @@ const UserList = () => {
               'Content-Type': 'application/json',
               'auth_token' : token
             },
-            body: id
+            data: data
           };
           
           axios(config)
           .then(function (response) {
             console.log("Data berhasil dihapus")
+            navigation('/admin');
           })
           .catch(function (error) {
             console.log(error);

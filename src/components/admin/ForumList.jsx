@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 
 const ForumList = () => {
+    const navigation = useNavigate();
     const [forums, setForum] = useState([]);
     const [isLoading, setisLoading] = useState(true);
     const [isError, setisError] = useState(false);
@@ -36,6 +38,11 @@ const ForumList = () => {
 
     const deleteForum = (id) => {
         console.log(id)
+
+        var data = JSON.stringify({
+            "id": id
+        })
+
         var config = {
             method: 'delete',
             url: 'https://blue-cloudy-rattlesnake.cyclic.app/admin',
@@ -43,14 +50,13 @@ const ForumList = () => {
               'Content-Type': 'application/json',
               'auth_token' : token
             },
-            body: {
-                '_id': id
-            }
+            data: data
           };
           
           axios(config)
           .then(function (response) {
             console.log("Data berhasil dihapus")
+            navigation('/admin');
           })
           .catch(function (error) {
             console.log(error);
