@@ -6,6 +6,8 @@ import axios from 'axios';
 function ContainerForum() {
     const navigation = useNavigate();
     const [forum, setForum] = useState([])
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -23,31 +25,31 @@ function ContainerForum() {
       
       axios(config)
       .then(function (response) {
-        setForum(response.data);
-        console.log(forum);
-        console.log(response.data);
-        console.log(JSON.stringify(response.data));
+        setForum(response.data.data);
+        //console.log(response.data);
+        setisLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setisError(true);
       });
     }, [])
     
-
-    // console.log(forum)
+    console.log(forum)
 
     const handleDetail = (id) => {
         navigation(`/yourforum/${id}`);
     }
 
+    if (isLoading) return <h1>Loading data</h1>;
+    else if (!isError)
     return (
         <>
-
         {forum.map((item, index) => (
             <div key={index} className="forum">
             <div className="forum-info">
                 <a onClick={()=> handleDetail(item._id)}>
-                    <p>{item.user}</p>
+                    <p>{item.user.username}</p>
                     <h3>{item.judul}</h3>
                 </a>
             </div>
