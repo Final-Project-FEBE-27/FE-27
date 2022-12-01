@@ -26,7 +26,7 @@ const Login = () => {
       var config = {
         method: 'post',
         url: 'https://blue-cloudy-rattlesnake.cyclic.app/login',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json'
         },
         data : data
@@ -37,6 +37,7 @@ const Login = () => {
         console.log('ini response sukses ', response);
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('username', response.data.data)
+        localStorage.setItem('iduser', response.data.id)
         localStorage.setItem('email', email)
         alert("Login sukses")
         navigation('/dashboard')
