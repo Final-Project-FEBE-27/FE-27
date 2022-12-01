@@ -9,48 +9,73 @@ import { useNavigate } from "react-router-dom"
 
 
 const CategoryPage = () => {
-    
     const navigation = useNavigate();
     const [forum, setForum] = useState([])
     const { kategori } = useParams();
+    const [isLoading, setisLoading] = useState(true);
+    const [isError, setisError] = useState(false);
+    const token = localStorage.getItem("token");
     //console.log(kategori)
 
     useEffect(() => {
-        axios("https://6379ea2d7419b414df95e16c.mockapi.io/forum").then (result => {
-            // console.log(result.data)
-            setForum(result.data)
+        var data = '';
+      
+        var config = {
+            method: 'get',
+            url: 'https://blue-cloudy-rattlesnake.cyclic.app/dashboard',
+            headers: { 
+            'Content-Type': 'application/json',
+            'auth_token' : token
+            },
+            data: data,
+        };
+      
+        axios(config)
+        .then(function (response) {
+            setForum(response.data.data);
+            console.log(response.data)
+            //console.log(response.data);
+            setisLoading(false);
         })
+        .catch(function (error) {
+            console.log(error);
+            setisError(true);
+        });
     }, [])
+    
+    //console.log(forum)
 
     const handleDetail = (id) => {
         navigation(`/yourforum/${id}`);
     }
-    //console.log(forum)
+
+    if (isLoading) return <h1>Loading data</h1>;
+    else if (!isError)
 
     return (
         <>
         <div className="dashboard">
-                    <Navbar /> 
-                    <div className="dashboard-content d-flex justify-content-between">
-                        <BarKategori />
-                        <div className="containerforum d-flex flex-column">
-                        {forum.filter((el) => el.kategori === kategori).map((el, index) => {
-                        return (
-                            <div key={index}>
-                            <div className="forum">
-                                <div className="forum-info">
-                                    <h3 onClick={()=> handleDetail(el.id)}>{el.title}</h3>
-                                </div>
-                                <div className="overview">
-                                    {el.desc}
-                                </div>
-                            </div>
-                            </div>
-                            )
-                        })}
+            <Navbar /> 
+            <div className="dashboard-content d-flex justify-content-between">
+            <BarKategori />
+                <div className="containerforum d-flex flex-column">
+                {forum.filter((el) => el.kategori === kategori).map((el, index) => {
+                return (
+                    <div key={index}>
+                    <div className="forum">
+                        <div className="forum-info">
+                            <h3 onClick={()=> handleDetail(el._id)}>{el.judul}</h3>
                         </div>
-                    <BuatForum />
+                        <div className="overview">
+                            {el.isi}
+                        </div>
+                    </div>
+                    </div>
+                    )
+                })}
                 </div>
+                <BuatForum />
+            </div>
         </div>
         </>
     )
