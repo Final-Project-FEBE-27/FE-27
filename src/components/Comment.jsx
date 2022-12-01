@@ -4,6 +4,7 @@ import { useState } from "react";
 const Comment = () => {
     const [comment, setComment] = useState("")
     const [comments, setComments] = useState([])
+    const name = localStorage.getItem("username");
     
     const HandleBtn = () => {
         setComments((comments) => [...comments, comment])
@@ -21,7 +22,10 @@ const Comment = () => {
                     <textarea value={comment} className="input-comment" onChange={HandleComment}/>
                     <button className="comment-btn" onClick={HandleBtn}>Submit</button>
                     {comments.map((text, index) => (
-                    <div key={index} className="comment-container">{text}</div>
+                    <div key={index} className="comment-container">
+                        <p style={{ marginLeft: "6px", fontSize:18, marginTop:6 }}>{name}</p>
+                        <p style={{ marginLeft: "10px", textAlign:'start', marginTop:10 }}>{text}</p>
+                    </div>
                     ))}
                 </div>
             </div>

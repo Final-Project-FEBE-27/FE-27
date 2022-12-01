@@ -60,11 +60,23 @@
     margin-right: 1rem;
     font-size: large;
     font-weight: 600;
+    color: #072D4B !important;
+    text-decoration: none;
+    font-size: medium;
+    font-weight: 600;
 }
 
 .navbar-brand img {
-    width: 1.5rem;
+    width: 2rem;
     margin-right: 0.25rem;
+}
+
+.navbar-brand span {
+    color: #D7715C;
+}
+
+.navbar-brand span:hover {
+    color: white;
 }
 
 .navbar a {
@@ -72,10 +84,6 @@
     text-decoration: none;
     font-size: medium;
     font-weight: 600;
-}
-
-.navbar a span {
-    color: #D7715C;
 }
 
 .navbar a:hover {
