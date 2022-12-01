@@ -11,7 +11,7 @@ const UploadForum = () => {
     const [kategori, setKategori] = useState("");
     const [uploadforum, setUploadForum] = useState({});
     const navigation = useNavigate();
-    const name = localStorage.getItem("username");
+    const iduser = localStorage.getItem("iduser");
 
     // console.log(username, password);
 
@@ -22,12 +22,10 @@ const UploadForum = () => {
         const token = localStorage.getItem("token");
       
         var data = JSON.stringify({
+            "user": iduser,
             "judul": title,
             "isi": desc,
-            "kategori": kategori,
-            "user": {
-                "username": name
-            }
+            "kategori": kategori
           });
           
           var config = {
