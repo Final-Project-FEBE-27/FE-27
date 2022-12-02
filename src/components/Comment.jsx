@@ -44,8 +44,8 @@ const Comment = () => {
     
     const HandleBtn = () => {
         var data = JSON.stringify({
-            "username": name,
-            "komentar": comment
+            "komentar": comment,
+            "username": name
         });
 
         var config = {
