@@ -22,7 +22,7 @@ const DetailForum = () => {
       
         var config = {
             method: 'get',
-            url: 'https://blue-cloudy-rattlesnake.cyclic.app/yourforum/'+id,
+            url: `https://blue-cloudy-rattlesnake.cyclic.app/yourforum/${id}`,
             headers: { 
             'Content-Type': 'application/json',
             'auth_token' : token

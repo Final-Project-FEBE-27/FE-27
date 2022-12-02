@@ -4,7 +4,7 @@ import {Navigate, Outlet} from 'react-router-dom'
 
 const isAuth = () => {
     const user=localStorage.getItem('token')
-    console.log("autentikasi berhasil");
+    //console.log("autentikasi berhasil");
     if (user != null) {
         return true
     } else {
