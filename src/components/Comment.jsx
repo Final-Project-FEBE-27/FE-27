@@ -87,6 +87,7 @@ const Comment = () => {
                     <h5 className="comment-text">Comment</h5>
                     <textarea value={comment} className="input-comment" onChange={HandleComment}/>
                     <button className="comment-btn" onClick={HandleBtn}>Submit</button>
+                </div>
                     {showComment.map((el, index) => {
                         return (
                         <div key={index} className="comment-container">
@@ -95,7 +96,7 @@ const Comment = () => {
                         </div>
                         )
                     })}
-                </div>
+                
             </div>
             
         </>
