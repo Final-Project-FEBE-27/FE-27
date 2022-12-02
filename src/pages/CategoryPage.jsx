@@ -64,6 +64,7 @@ const CategoryPage = () => {
                     <div key={index}>
                     <div className="forum">
                         <div className="forum-info">
+                            <p>{el.user.username}</p>
                             <h3 onClick={()=> handleDetail(el._id)}>{el.judul}</h3>
                         </div>
                         <div className="overview">
