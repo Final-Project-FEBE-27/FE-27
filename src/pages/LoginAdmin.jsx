@@ -39,8 +39,7 @@ const LoginAdmin = () => {
       .then(function (response) {
         console.log('ini response sukses ', response);
         localStorage.setItem('token', response.data.token)
-        localStorage.setItem("user", "admin");
-        alert("Berhasil login sebagai admin!")
+        alert("Login admin sukses!")
         navigation('/admin')
       })
       .catch(function (error) {
