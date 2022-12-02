@@ -56,7 +56,7 @@ const UserList = () => {
           axios(config)
           .then(function (response) {
             console.log("Data berhasil dihapus")
-            navigation('/admin');
+            window.location.reload();
           })
           .catch(function (error) {
             console.log(error);
