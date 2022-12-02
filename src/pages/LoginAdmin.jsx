@@ -62,7 +62,7 @@ const LoginAdmin = () => {
                 <h1>Login as admin</h1>
                 <div className="form-login">
                     <div className="d-flex flex-column">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Username</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label htmlFor="password">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>

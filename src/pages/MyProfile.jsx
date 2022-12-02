@@ -7,7 +7,7 @@ const MyProfile = () => {
 
     return (
         <>
-            <div className="profile container mt-5">
+            <div className="profile container mt-6">
                 <div className="card">
                     <div className="card-header">
                         <p>My Profile</p>
