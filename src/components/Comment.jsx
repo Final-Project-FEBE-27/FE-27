@@ -64,6 +64,7 @@ const Comment = () => {
             // console.log(response.data)
             console.log("komentar berhasil");
             setisLoading(false);
+            window.location.reload();
         })
         .catch(function (error) {
             console.log(error);
