@@ -225,12 +225,11 @@
 }
 
 .bg-image {
-    height: 100vh;
     background-image: url(./img/bg.png);
     background-size: cover;
     background-repeat: no-repeat;
-    max-width: 100vw;
-    max-height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 .index-content,
@@ -400,6 +399,12 @@
     body .profile ul li {
         font-size: 0.75rem;
     }
+    body .comment-container {
+        margin: 1rem 0 0 2rem;
+    }
+    .comment-container p {
+        font-size: 0.75rem;
+    }
 }
 
 @media only screen and (max-width:540px) {
@@ -553,7 +558,7 @@
 
 .comment-container {
     height: 75px;
-    width: 500px;
+    width: 85%;
     background-color: #F9F5F4;
     border-radius: 5px;
     margin: 1rem 0 0 3rem;
@@ -564,6 +569,10 @@
 .edit-content {
     margin-top: 10rem;
     margin-bottom: 10rem;
+}
+
+.table {
+    border-radius: 5px;
 }
 
 .table-user button {
@@ -606,7 +615,7 @@
 }
 
 .profile .card-header {
-    background-color: #E9CCB1;
+    background-color: #F9F5F4;
 }
 
 .profile .card-header p {
