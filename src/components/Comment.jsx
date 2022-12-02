@@ -44,7 +44,8 @@ const Comment = () => {
     
     const HandleBtn = () => {
         var data = JSON.stringify({
-            "komentar": comment
+            "komentar": comment,
+            "username": name
         });
 
         var config = {
@@ -89,7 +90,7 @@ const Comment = () => {
                     {showComment.map((el, index) => {
                         return (
                         <div key={index} className="comment-container">
-                            {/* <p style={{ marginLeft: "6px", fontSize:18, marginTop:6 }}>{el.nama}</p> */}
+                            <p style={{ marginLeft: "6px", fontSize:18, marginTop:6 }}>{el.username}</p>
                             <p style={{ marginLeft: "10px", textAlign:'start', marginTop:10 }}>{el.komentar}</p>
                         </div>
                         )
