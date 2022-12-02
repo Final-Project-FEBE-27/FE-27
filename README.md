@@ -1,4 +1,8 @@
-# Final Project - ASEAN Youth Forum
+# Final Project - FEBE-27
+
+## ASEAN Youth Forum
+
+ASEAN Youth Forum (AYF) adalah gerakan yang mewakili dan memperjuangkan anak muda di ASEAN untuk menyuarakan keprihatinan dan strategi mereka untuk mencapai ASEAN yang lebih baik. AYF telah menjadi platform pemuda di ASEAN untuk menyuarakan dan menuntut hak-hak mereka untuk komunitas regional yang berkelanjutan, inklusif, berpusat pada orang, dan digerakkan oleh pemuda. Jaringan tersebut bertujuan untuk melembagakan dan mendirikan cabang-cabang nasionalnya untuk memfokuskan keterlibatan pada isu-isu lokal yang penting dan relevan yang mempengaruhi kaum muda dan mengkonsolidasikan proposal dan agenda kebijakan untuk diajukan ke kantor-kantor ASEAN yang relevan. Karena fokus kami adalah pada kaum muda, kami tidak memiliki 1 tujuan SDG spesifik yang kami prioritaskan.
 
 ## Isu
 
@@ -38,3 +42,5 @@ Dari permasalahan sebelumnya, kami membuat sebuah website atau aplikasi _**(Expl
 ### Production
 
 [http://asean-explore.netlify.app](http://asean-explore.netlify.app)
+
+![Halaman Index](./src/img/Halaman-Index.png)
